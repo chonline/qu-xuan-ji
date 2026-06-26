@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="banner">
+    <text class="slogan">🙏 传统抽签 仪式感满满</text>
+  </view>
+  
+  <view class="type-selector">
+    <view wx:for="{{lotteryTypes}}" wx:key="type" class="type-item {{currentType === item.type ? 'active' : ''}}" bindtap="selectType" data-type="{{item.type}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <button class="draw-btn" bindtap="drawLottery" disabled="{{drawing}}">
+    {{drawing ? '抽签中...' : '开始抽签'}}
+  </button>
+
+  <view wx:if="{{result}}" class="result">
+    <view class="sign">第 {{result.signCode}} 签</view>
+    <view class="name">{{result.signName}}</view>
+    <view class="level">{{result.level}}</view>
+    <view class="interpretation">{{result.interpretation}}</view>
+    <view class="tips">改运小Tips: {{result.luckyTip}}</view>
+    
+    <button bindtap="shareResult">分享给朋友</button>
+    <button bindtap="drawAgain">再抽一签</button>
+  </view>
+</view>
