@@ -1,0 +1,8 @@
+.container { padding: 20rpx; height: 100vh; display: flex; flex-direction: column; }
+.master-header { text-align: center; padding: 30rpx; }
+.chat-container { flex: 1; background: linear-gradient(#f8f0e8, #f0e0d0); padding: 20rpx; }
+.message { margin: 20rpx 0; padding: 25rpx; border-radius: 40rpx; max-width: 80%; }
+.user { background: #95d0e6; align-self: flex-end; color: white; }
+.master { background: #e6d5b8; align-self: flex-start; }
+.input-area { display: flex; padding: 20rpx; background: white; border-top: 1px solid #eee; }
+.master-switch { display: flex; flex-wrap: wrap; justify-content: center; padding: 20rpx; }

@@ -1,0 +1,24 @@
+<!-- AI大师聊天页面 -->
+<view class="container">
+  <view class="master-header">
+    <view class="master-avatar">{{currentMaster.avatar}}</view>
+    <text class="master-name">{{currentMaster.name}}</text>
+  </view>
+  
+  <scroll-view class="chat-container" scroll-y="true" scroll-into-view="msg-{{messages.length}}">
+    <view wx:for="{{messages}}" wx:key="id" class="message {{item.isUser ? 'user' : 'master'}}">
+      <text>{{item.content}}</text>
+    </view>
+  </scroll-view>
+
+  <view class="input-area">
+    <input type="text" value="{{inputValue}}" placeholder="输入您的问题..." bindinput="onInput" />
+    <button bindtap="sendMessage">发送</button>
+  </view>
+
+  <view class="master-switch">
+    <view wx:for="{{masters}}" wx:key="style" class="master-chip {{item.style === currentMaster.style ? 'active' : ''}}" bindtap="switchMaster" data-style="{{item.style}}">
+      {{item.name}}
+    </view>
+  </view>
+</view>
