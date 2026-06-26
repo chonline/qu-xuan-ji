@@ -1,5 +1,7 @@
 package com.quxuanji.controller;
 
+import com.quxuanji.service.PaymentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -8,15 +10,18 @@ import java.util.Map;
 @RequestMapping("/api/payment")
 public class PaymentController {
 
+    @Autowired
+    private PaymentService paymentService;
+
     @PostMapping("/create")
-    public Map<String, Object> createOrder(@RequestBody Map<String, Object> request) {
-        // TODO: 实现创建支付订单逻辑
-        return Map.of("code", 200, "message", "支付订单创建成功", "data", request);
+    public Result<String> createOrder(@RequestBody Map<String, Object> request, @RequestHeader("X-User-Id") Long userId) {
+        // TODO: 完整微信支付 SDK 集成
+        return Result.success("支付订单创建成功 (模拟)");
     }
 
     @PostMapping("/callback")
-    public String payCallback(@RequestBody Map<String, Object> callback) {
-        // TODO: 微信支付回调处理
+    public String callback(@RequestBody String xml) {
+        // 微信支付回调处理
         return "success";
     }
 }
