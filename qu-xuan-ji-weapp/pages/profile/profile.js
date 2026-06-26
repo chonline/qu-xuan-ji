@@ -1,23 +1,25 @@
-// VIP支付页面交互优化
 Page({
   data: {
-    vipOptions: [
-      {type: 1, name: '月卡', price: 19.9},
-      {type: 2, name: '季卡', price: 49},
-      {type: 3, name: '年卡', price: 168}
-    ]
+    userInfo: {},
+    isVip: false,
+    vipExpire: ''
   },
-  subscribeVip(e) {
-    const type = e.currentTarget.dataset.type;
+  onShow() {
+    this.loadProfile();
+  },
+  loadProfile() {
+    // 调用后端 /api/user/profile
     wx.request({
-      url: 'http://localhost:8080/api/payment/create',
-      method: 'POST',
-      data: {productType: 'vip', vipType: type},
-      success: res => {
+      url: getApp().globalData.baseUrl + '/api/user/profile',
+      header: { 'X-User-Id': wx.getStorageSync('userId') },
+      success: (res) => {
         if (res.data.code === 200) {
-          wx.showToast({title: '支付成功'});
+          this.setData({ userInfo: res.data.data, isVip: res.data.data.isVip });
         }
       }
     });
+  },
+  showVipCenter() {
+    wx.navigateTo({ url: '/pages/vip/vip' });
   }
 });

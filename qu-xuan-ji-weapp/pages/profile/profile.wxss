@@ -1,0 +1,3 @@
+.profile-container { padding: 20rpx; }
+.header { text-align: center; }
+.menu-item { padding: 30rpx; background: white; margin: 20rpx 0; border-radius: 16rpx; }
