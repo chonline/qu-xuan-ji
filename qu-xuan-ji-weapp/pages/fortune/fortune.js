@@ -1,0 +1,1 @@
+Page({ data: { fortune: null }, loadFortune() { wx.request({ url: '/api/fortune/daily', success(res){ this.setData({fortune: res.data}) } }) } })
